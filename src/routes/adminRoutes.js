@@ -81,7 +81,7 @@ var items=
 adminRouter.get("/update/:id",(req,res)=>{
     let id=req.params.id;
     
-    Bookdata.findOne({id})
+    Bookdata.findOne({_id:id})
     .then((data)=>{
         res.render("update",{
             title:"update",
@@ -96,6 +96,7 @@ adminRouter.get("/update/:id",(req,res)=>{
 // update db
 adminRouter.post("/changedb/:id",upload.single('image'),async (req,res)=>{
     let id = req.params.id;
+    console.log(id)
     const {title,author,genre} = req.body;
     const image = req.file.filename;
 
