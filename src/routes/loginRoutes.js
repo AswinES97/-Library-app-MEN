@@ -20,22 +20,9 @@ const adminNav = [
     }
 ];
 
-const userNav= [
-    {
-        link:"#",
-        name:'Books'
-    },
-    {
-        link:"/user/admin",
-        name:'Add Books'
-    },
-    {
-        link:'/logout',
-        name:'Logout'
-    }
-];
 
-const booksRouter = require("./bookRoutes")(userNav);
+
+const booksRouter = require("./bookRoutes");
 const adminRoutes = require("./adminRoutes")(adminNav);
     
 const isAuth = (req,res,next)=>{
@@ -73,12 +60,9 @@ loginRouter.post("/",async(req,res)=>{
     }
     
     req.session.isAuth = true;
-    res.redirect('/books');
+    res.redirect('/member');
 
 });
-
-
-
 
 
 module.exports = loginRouter;

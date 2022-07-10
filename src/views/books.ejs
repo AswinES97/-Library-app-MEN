@@ -6,12 +6,12 @@
 		<title><%=title%></title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="/css/bootstrap.min.css" rel="stylesheet">
 		
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
+		<link href="/css/styles.css" rel="stylesheet">
 	</head>
 	<body>
 <header class="navbar navbar-bright navbar-fixed-top" role="banner">
@@ -103,8 +103,8 @@
                   <small style="font-family:courier,'new courier';" class="text-muted"><%=books[i].genre%>
                     <br>
                     <button ><a href="books/<%=books[i]._id%>" class="text-muted">Read More!</a></button>
-                  <button ><a href="books/delete/<%=books[i]._id%>" class="text-muted" hidden>delete</a></button>
-                <button ><a href="books/<%=books[i]._id%>" class="text-muted">Read More!</a></button></small>
+                  <button ><a href="books/delete/<%=books[i]._id%>" class="text-muted" >delete</a></button>
+              </small>
                   </h4></div>
                 <div class="col-xs-3"></div>
               </div>
@@ -115,9 +115,7 @@
           <%}%>
           <!--/stories-->
           
-          
-          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
-        
+         
           
         </div>
       </div>

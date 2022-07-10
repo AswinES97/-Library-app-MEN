@@ -10,7 +10,7 @@ const book= [
         name:'Books'
     },
     {
-        link:"/admin",
+        link:"/user/admin",
         name:'Add Books'
     },
     {

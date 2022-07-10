@@ -36,7 +36,7 @@ booksRouter.get("/delete/:no",(req,res)=>{
     const no = req.params.no;
     bookdata.deleteOne({"_id":no})
     .then(()=>{
-        res.redirect('/books');
+        res.redirect('/user/admin/books');
     })
   
 

@@ -21,6 +21,8 @@ const nav = [
 ];
 
 const loginRoutes = require("./src/routes/loginRoutes");
+const signupRoutes = require('./src/routes/signupRoutes');
+const memberRoutes = require("./src/routes/memberRoutes")
 
 
 // session middleware
@@ -43,27 +45,9 @@ app.use(express.static("./public"));
 app.set("view engine","ejs");
 app.set("views","./src/views");
 app.use("/user",loginRoutes);
+app.use("/register",signupRoutes);
+app.use("/member",memberRoutes);
 
-app.get("/books",(req,res)=>{
-    const nav1 = [
-    {
-        link:'#',
-        name:'Books'
-    },
-    {
-        link:'/logout',
-        name:'Logout'
-    }
-];
-     bookdata.find()
-        .then((books)=>{
-            res.render("userBook",{
-                nav1,
-                title:"Books",
-                books
-        })
-    });
-})
 
 
 //logout
