@@ -14,7 +14,19 @@ const nav1 = [
     }
 ];
 
-memberRouter.get("/",(req,res)=>{
+    
+const isAuth = (req,res,next)=>{
+    if(req.session.isAuth){
+        next();
+    }
+    else
+    {
+        res.redirect('/login')
+    }
+
+}
+
+memberRouter.get("/",isAuth,(req,res)=>{
     booksData.find()
     .then((books)=>{
         res.render("userBook",{

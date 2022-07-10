@@ -85,4 +85,4 @@ app.get("/", (req,res)=>{
 
 
 
-app.listen(process.env.PORT, '0.0.0.0');
+app.listen(5000,()=>console.log("Running on:http://localhost:5000/"));

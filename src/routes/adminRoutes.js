@@ -2,6 +2,7 @@ const express = require("express");
 const adminRouter = express.Router();
 const Bookdata = require('../model/Bookdata');
 const multer = require('multer');
+const { render } = require("ejs");
 
 
 const book= [
@@ -38,13 +39,28 @@ const upload = multer({storage:uplodcntrl});
 function router(nav){
 adminRouter.get('/',(req,res)=>{
     res.render("addbook",{
-        nav,
-        title: 'Library'
-    })
-})
+        nav:[
+            {
+        link:"/user/admin/books",
+        name:'Books'
+    },
+    {
+        link:"/user/admin",
+        name:'Add Books'
+    },
+    {
+        link:'/logout',
+        name:'Logout'
+    },
+],
+    title:"Add Book"
+
+   
+})})
 
 
 adminRouter.post("/add",upload.single('image'),(req,res)=>{
+    
 var items=
     {
     title:req.body.title,
@@ -59,7 +75,47 @@ var items=
    })
 })
 
+
+
+// update page
+adminRouter.get("/update/:id",(req,res)=>{
+    let id=req.params.id;
+    
+    Bookdata.findOne({id})
+    .then((data)=>{
+        res.render("update",{
+            title:"update",
+            data,
+            nav
+        })
+    })
+
+});
+
+
+// update db
+adminRouter.post("/changedb/:id",upload.single('image'),async (req,res)=>{
+    let id = req.params.id;
+    const {title,author,genre} = req.body;
+    const image = req.file.filename;
+
+    const changeData ={
+        title,
+        author,
+        genre,
+        image
+    }
+
+     await Bookdata.findByIdAndUpdate(id,{$set:changeData})
+     .then(()=>{
+        res.redirect("/user/admin/books")
+     })
+
+})
+
+
 return adminRouter;
+
 }
 
 module.exports = router;
