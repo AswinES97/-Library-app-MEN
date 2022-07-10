@@ -1,0 +1,84 @@
+const express = require("express");
+const loginRouter = express.Router();
+const userModel = require("../model/User");
+const bcrypt= require('bcryptjs');
+
+
+
+const adminNav = [
+    {
+        link:'/user/admin/books',
+        name:'Books'
+    },
+    {
+        link:'/user/admin',
+        name:'Add Book'
+    },
+    {
+        link:'/logout',
+        name:'Logout!'
+    }
+];
+
+const userNav= [
+    {
+        link:"#",
+        name:'Books'
+    },
+    {
+        link:"/user/admin",
+        name:'Add Books'
+    },
+    {
+        link:'/logout',
+        name:'Logout'
+    }
+];
+
+const booksRouter = require("./bookRoutes")(userNav);
+const adminRoutes = require("./adminRoutes")(adminNav);
+    
+const isAuth = (req,res,next)=>{
+    if(req.session.isAuth){
+        next();
+    }
+    else
+    {
+        res.redirect('/login')
+    }
+
+}
+
+loginRouter.use("/books", isAuth,booksRouter);
+loginRouter.use("/admin", isAuth,adminRoutes);
+
+
+//login
+loginRouter.post("/",async(req,res)=>{
+    const{email,password} = req.body;
+
+    if(email==="admin@gmail.com" && password==="admin123"){
+        req.session.isAuth= true;
+        return res.redirect("/user/admin");
+    }
+
+    const userCheck = await userModel.findOne({email});
+    const passCheck = await bcrypt.compare(password, userCheck.password);
+
+    if(!userCheck){
+        return res.redirect("/login");
+    }
+    if(!passCheck){
+        return res.redirect("/login");
+    }
+    
+    req.session.isAuth = true;
+    res.redirect('/books');
+
+});
+
+
+
+
+
+module.exports = loginRouter;
