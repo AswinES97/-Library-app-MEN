@@ -2,7 +2,6 @@ const express = require("express");
 const memberRouter = express.Router();
 const booksData= require("../model/Bookdata")
 
-
 const nav1 = [
     {
         link:'#',
@@ -11,10 +10,13 @@ const nav1 = [
     {
         link:'/logout',
         name:'Logout!'
+    },
+    {
+        link:"/member/author",
+        name:"Author"
     }
 ];
 
-    
 const isAuth = (req,res,next)=>{
     if(req.session.isAuth){
         next();

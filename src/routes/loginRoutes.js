@@ -13,6 +13,9 @@ const adminNav = [
     {
         link:'/user/admin',
         name:'Add Book'
+    },{
+        link:"author",
+        name:"Author"
     },
     {
         link:'/logout',

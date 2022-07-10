@@ -2,7 +2,6 @@ const express = require("express");
 const adminRouter = express.Router();
 const Bookdata = require('../model/Bookdata');
 const multer = require('multer');
-const { render } = require("ejs");
 
 
 const book= [
@@ -23,7 +22,7 @@ const book= [
 const booksRouter = require("./bookRoutes")(book);
 adminRouter.use("/books",booksRouter);
 
-
+//multer control
 const uplodcntrl = multer.diskStorage({
 
     destination:function(req,file,cb){
@@ -36,8 +35,10 @@ const uplodcntrl = multer.diskStorage({
 const upload = multer({storage:uplodcntrl});
 
 
+
 function router(nav){
-adminRouter.get('/',(req,res)=>{
+
+    adminRouter.get('/',(req,res)=>{
     res.render("addbook",{
         nav:[
             {
@@ -49,16 +50,24 @@ adminRouter.get('/',(req,res)=>{
         name:'Add Books'
     },
     {
+        link:"/user/admin/author",
+        name:"Author"
+    },
+    {
         link:'/logout',
         name:'Logout'
-    },
+    }
 ],
     title:"Add Book"
+})
+})
 
-   
-})})
+const authorRouter = require("./authorRoutes")(nav);
+adminRouter.use("/author",authorRouter);
 
 
+
+//add new book
 adminRouter.post("/add",upload.single('image'),(req,res)=>{
     
 var items=

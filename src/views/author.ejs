@@ -7,7 +7,7 @@
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
-		
+		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -50,7 +50,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        <h1>Books!
+        <h1>Book
           <p class="lead"></p>
         </h1>
       </div>
@@ -93,18 +93,14 @@
           <div class="row">    
             <br>
             <div class="col-md-2 col-sm-3 text-center">
-              <a class="story-title" href="#"><img alt="" src="/image/<%=books[i].image%>" style="width:100px;height:100px" class="img-circle"></a>
+              
             </div>
             <div class="col-md-10 col-sm-9">
-              <h3><%=books[i].title%></h3>
+              <!-- <h3><%=books.title%></h3> -->
               <div class="row">
                 <div class="col-xs-9">
-                  <h4><span class="label label-default"><%=books[i].author%></span></h4><h4>
-                  <small style="font-family:courier,'new courier';" class="text-muted"><%=books[i].genre%>
-                    <br>
-                    <button ><a href="books/<%=books[i]._id%>" class="text-muted">Read More!</a></button>
-                  
-              </small>
+                  <h1><span class="label label-default"><%=books[i].author%></span></h1>
+<button><a href="author/<%=books[i]._id%>">X</a></button><br></small>
                   </h4></div>
                 <div class="col-xs-3"></div>
               </div>
@@ -115,7 +111,8 @@
           <%}%>
           <!--/stories-->
           
-         
+          
+        
           
         </div>
       </div>
