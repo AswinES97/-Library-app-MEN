@@ -24,6 +24,8 @@ const adminNav = [
 
 const booksRouter = require("./bookRoutes");
 const adminRoutes = require("./adminRoutes")(adminNav);
+const memberRouter = require("./memberRoutes");
+
     
 const isAuth = (req,res,next)=>{
     if(req.session.isAuth){
@@ -38,6 +40,8 @@ const isAuth = (req,res,next)=>{
 
 loginRouter.use("/books", isAuth,booksRouter);
 loginRouter.use("/admin", isAuth,adminRoutes);
+loginRouter.use("/member", isAuth,memberRouter);
+
 
 
 //login

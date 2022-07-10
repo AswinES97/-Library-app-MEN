@@ -1,8 +1,9 @@
 const express = require("express");
 const memberRouter = express.Router();
+const booksData= require("../model/Bookdata")
 
 
-const userNav = [
+const nav1 = [
     {
         link:'#',
         name:'Books'
@@ -13,9 +14,17 @@ const userNav = [
     }
 ];
 
-
-const booksRouter = require("./bookRoutes")(userNav);
-memberRouter.use("/",booksRouter)
+memberRouter.get("/",(req,res)=>{
+    booksData.find()
+    .then((books)=>{
+        res.render("userBook",{
+        nav1,
+        title:"books",
+        books
+    })
+    })
+    
+})
 
 
 module.exports = memberRouter;

@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 //Connect to database
-mongoose.connect('mongodb://localhost:27017/library');
+mongoose.connect('mongodb+srv://user1:Aswines@aswines.7cwwj.mongodb.net/Lib-app?retryWrites=true&w=majority');
 
 //Schema define
 const Schema = mongoose.Schema;
