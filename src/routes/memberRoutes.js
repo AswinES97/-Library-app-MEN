@@ -38,5 +38,27 @@ memberRouter.get("/",isAuth,(req,res)=>{
     
 })
 
+memberRouter.get("/:id",(req,res)=>{
+    let id = req.params.id;
+
+    booksData.findOne({_id:id})
+    .then((book)=>{
+        res.render("Singlebook",{
+            nav:[
+                {
+                 
+            link:'/member',
+            name:'Books'
+        },
+        {
+            link:'/logout',
+            name:'Logout!'
+        }],    
+            title:"Book",
+            book
+        });
+    })
+})
+
 
 module.exports = memberRouter;
